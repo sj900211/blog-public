@@ -1,0 +1,43 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: https://discovery.freshr.run/eureka/
+
+spring:
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://freshr.run:406${freshr.service.serial}/postgres
+    username: postgres
+    password: postgres
+
+  data:
+    redis:
+      host: https://freshr.run
+      port: 40400
+      password: redis-password
+
+  elasticsearch:
+    uris: https://freshr.run:40500
+    password: elasticsearch-password
+
+  kafka:
+    bootstrap-servers: freshr.run:40302
+
+freshr:
+  logstash:
+    url: freshr.run
+    port: 10404
+  minio:
+    host: http://freshr.run:10501
+    bucket: freshr
+    access: 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
+    secret: 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
+  rocket-chat:
+    host: https://freshr.run:40100
+    manager:
+      username: yKrjKaoPhJFx9hnuxyZEP0RE/ScTRDMmnBvurhzvoJEIoYN50DlQEyGQjvuTQAjESyXt4gk3kNBNlgd6rWQh1NoggpE=
+      password: eZ9coFNx727x+dHIi74EKB1wYiHAakH1BvgTBswcgSUE6mGh1+G7aUKpIbw3PPMZlQX9y0Go5ovQUuffHpuNbwTDAf4=

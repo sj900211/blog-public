@@ -1,0 +1,41 @@
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/configure/configure-elasticsearch" />
+    <file type="web" url="file://$PROJECT_DIR$/configure/configure-extensions" />
+    <file type="web" url="file://$PROJECT_DIR$/configure/configure-jpa" />
+    <file type="web" url="file://$PROJECT_DIR$/configure/configure-openfeign" />
+    <file type="web" url="file://$PROJECT_DIR$/configure/configure-redis" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/freshr-extension-auth" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/freshr-extension-common" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/freshr-extension-entity" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/freshr-extension-grpc" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/freshr-extension-kafka" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/freshr-extension-rest-docs" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/freshr-extension-rocket-chat" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/freshr-extension-security" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/music-extension-common" />
+    <file type="web" url="file://$PROJECT_DIR$/extension/music-extension-grpc" />
+    <file type="web" url="file://$PROJECT_DIR$/infra/freshr-infra-discovery" />
+    <file type="web" url="file://$PROJECT_DIR$/infra/freshr-infra-gateway" />
+    <file type="web" url="file://$PROJECT_DIR$/library/core/library-core-enumeration-mapper" />
+    <file type="web" url="file://$PROJECT_DIR$/library/core/library-core-exceptions" />
+    <file type="web" url="file://$PROJECT_DIR$/library/core/library-core-unit" />
+    <file type="web" url="file://$PROJECT_DIR$/library/core/library-core-utils" />
+    <file type="web" url="file://$PROJECT_DIR$/library/docs/library-docs-rest-docs" />
+    <file type="web" url="file://$PROJECT_DIR$/library/docs/library-docs-search-docs" />
+    <file type="web" url="file://$PROJECT_DIR$/library/util/library-util-minio" />
+    <file type="web" url="file://$PROJECT_DIR$/service/demo" />
+    <file type="web" url="file://$PROJECT_DIR$/service/freshr-service-account" />
+    <file type="web" url="file://$PROJECT_DIR$/service/freshr-service-auth" />
+    <file type="web" url="file://$PROJECT_DIR$/service/freshr-service-predefined" />
+    <file type="web" url="file://$PROJECT_DIR$/service/freshr-test" />
+    <file type="web" url="file://$PROJECT_DIR$/service/test-entity" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+</project>

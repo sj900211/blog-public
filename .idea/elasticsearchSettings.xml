@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ElasticsearchConfiguration">
+    <option name="clusterConfigurations">
+      <map>
+        <entry key="f797f675-7cdf-45ab-99cb-e38daab98167">
+          <value>
+            <ClusterConfigInternal>
+              <option name="id" value="f797f675-7cdf-45ab-99cb-e38daab98167" />
+              <option name="label" value="DEV-ELASTICSEARCH" />
+              <option name="url" value="http://freshr.run:40500" />
+              <option name="version" value="1" />
+            </ClusterConfigInternal>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="version" value="2" />
+  </component>
+</project>

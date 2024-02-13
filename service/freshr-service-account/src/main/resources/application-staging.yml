@@ -1,0 +1,46 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: https://staging.discovery.freshr.run/eureka/
+
+spring:
+  jpa:
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://staging.freshr.run:406${freshr.service.serial}/postgres
+    username: postgres
+    password: postgres
+
+  data:
+    redis:
+      host: https://staging.freshr.run
+      port: 40400
+      password: redis-password
+
+  elasticsearch:
+    uris: https://staging.freshr.run:40500
+    password: elasticsearch-password
+
+  kafka:
+    bootstrap-servers: staging.freshr.run:40302
+
+freshr:
+  logstash:
+    url: staging.freshr.run
+    port: 10404
+  minio:
+    host: http://staging.freshr.run:10501
+    bucket: freshr-staging
+    access: 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
+    secret: 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
+  rocket-chat:
+    host: https://staging.freshr.run:40100
+    manager:
+      username: whNV2JBraJVriE0MuBv8+XFJs6fOVTQJo/Tp4Voad1okZHGRPttUPdWPr8aoycb53k0tvq9BDxV2rNFLH5pD20Np6SQ=
+      password: b/aVcpVhB/5Y7f9fryXDnHDPfdlzVZ9ZVkOiIxlBoKNCQVMRFbWls2j0JgivkzAKszuzYu7rYoqupcYtUw262S85+tk=

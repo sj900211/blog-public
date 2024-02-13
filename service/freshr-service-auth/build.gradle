@@ -1,0 +1,240 @@
+import static org.springframework.util.StringUtils.hasLength
+
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+    id 'com.google.cloud.tools.jib' version '3.3.1'
+}
+
+group = 'run.freshr'
+version = '0.0.1'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    maven {
+        url "https://:${GITHUB_READ_TOKEN}@maven.pkg.github.com/${GITHUB_OWNER}/*"
+    }
+    maven { url 'https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates' }
+    mavenCentral()
+}
+
+ext {
+    set('snippetsDir', file("build/generated-snippets"))
+    set('springCloudVersion', "2022.0.3")
+    set('testcontainersVersion', "1.18.3")
+    set('springGrpcVersion', '2.14.0.RELEASE')
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+    }
+}
+
+dependencies {
+    // WEB
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Netflix Eureka Client
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    // OpenFeign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    // Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // Validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Configuration Processor
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // LOMBOK
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // Kafka
+    implementation 'org.springframework.kafka:spring-kafka'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+    // GRPC
+    implementation "net.devh:grpc-server-spring-boot-starter:${springGrpcVersion}"
+    implementation "net.devh:grpc-client-spring-boot-starter:${springGrpcVersion}"
+
+    // Postgres
+    implementation 'org.postgresql:postgresql'
+
+    // Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // Elasticsearch
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+
+    // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation "com.querydsl:querydsl-jpa:${dependencyManagement.importedProperties['querydsl.version']}:jakarta" // QueryDsl Jpa
+    // QueryDsl Apt
+    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+    testImplementation 'com.querydsl:querydsl-jpa' // QueryDsl Jpa
+    testAnnotationProcessor 'com.querydsl:querydsl-apt' // QueryDsl Apt
+
+    // SQL Logging spy
+    implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
+
+    // Jakarta
+    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+
+    // Guava
+    implementation 'com.google.guava:guava:32.0.0-jre'
+
+    // RestDocs
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+
+    // Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
+    // Logback
+    implementation 'net.logstash.logback:logstash-logback-encoder:7.2'
+
+    // Docker Compose
+    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+
+    // Test Container
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation "com.redis.testcontainers:testcontainers-redis-junit:1.6.4"
+    testImplementation "org.testcontainers:elasticsearch"
+    testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'org.testcontainers:kafka'
+
+    // FreshR
+    implementation "${group}:library-core-utils:1.0.0.RELEASE"
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+    implementation 'org.jsoup:jsoup:1.15.3'
+
+    implementation "${group}:library-core-unit:1.0.0.RELEASE"
+    implementation "${group}:library-core-enumeration-mapper:1.0.0.RELEASE"
+    implementation "${group}:library-core-exceptions:1.0.0.RELEASE"
+
+    annotationProcessor "${group}:library-docs-search-docs:1.0.0.RELEASE"
+    annotationProcessor 'org.springframework.boot:spring-boot-starter-web'
+    annotationProcessor 'com.squareup:javapoet:1.13.0'
+
+    testImplementation "${group}:library-docs-rest-docs:1.0.0.RELEASE"
+    testAnnotationProcessor "${group}:library-docs-rest-docs:1.0.0.RELEASE"
+    testAnnotationProcessor 'com.google.guava:guava:31.1-jre'
+    testAnnotationProcessor 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation "${group}:library-util-minio:1.0.0.RELEASE"
+    implementation 'io.minio:minio:8.5.5'
+
+    api "${group}:configure-extensions:1.0.0.RELEASE"
+    api "${group}:configure-jpa:1.0.0.RELEASE"
+    api "${group}:configure-redis:1.0.0.RELEASE"
+    api "${group}:configure-elasticsearch:1.0.0.RELEASE"
+    api "${group}:configure-openfeign:1.0.0.RELEASE"
+
+    api "${group}:freshr-extension-common:1.0.0.RELEASE"
+    api "${group}:freshr-extension-entity:1.0.0.RELEASE"
+    api "${group}:freshr-extension-auth:1.0.0.RELEASE"
+    api "${group}:freshr-extension-security:1.0.0.RELEASE"
+    api "${group}:freshr-extension-rest-docs:1.0.0.RELEASE"
+    api "${group}:freshr-extension-grpc:1.0.0.RELEASE"
+    api "${group}:freshr-extension-kafka:1.0.0.RELEASE"
+    api "${group}:freshr-extension-rocket-chat:0.0.1-20231011.082527-7"
+}
+
+test {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+
+    jvmArgs('--add-opens', 'java.base/java.net=ALL-UNNAMED')
+
+    dependsOn compileTestJava
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+
+    inProcess = JAVA_EXEC
+    forkOptions {
+        jvmArgs('--add-opens', 'java.base/sun.nio.ch=ALL-UNNAMED',
+                '--add-opens', 'java.base/java.io=ALL-UNNAMED')
+    }
+
+    dependsOn test
+}
+
+compileTestJava {
+    doFirst {
+        File asciidocDir = file('src/docs/asciidoc')
+        File docsDir = file('src/main/resources/templates/docs')
+
+        // src/docs/asciidoc 삭제
+        if (asciidocDir.exists()) {
+            delete(asciidocDir)
+        }
+
+        // src/main/resources/templates/docs 삭제
+        if (docsDir.exists()) {
+            delete(docsDir)
+        }
+    }
+}
+
+tasks.register('restdocs') {
+    group 'docs'
+
+    // Rest Docs 빌드 html 파일을 복사
+    copy {
+        from "${asciidoctor.outputDir}"
+        into 'src/main/resources/templates/docs'
+    }
+
+    dependsOn asciidoctor
+}
+
+bootJar {
+    dependsOn restdocs
+}
+
+jib {
+    from {
+        image = 'openjdk:17-jdk-alpine'
+    }
+    to {
+        image = "${GITHUB_CONTAINER_PACKAGE}/${GITHUB_OWNER}/${rootProject.name}:" +
+                System.getenv("GITHUB_PROFILE") +
+                (hasLength(System.getenv("GITHUB_PROFILE")) ? "-" : "") +
+                "${version}"
+        auth {
+            username = System.getenv("GITHUB_ACTOR").toString()
+            password = System.getenv("GITHUB_TOKEN").toString()
+        }
+    }
+}

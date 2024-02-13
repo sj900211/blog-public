@@ -1,0 +1,7 @@
+###
+# @name Get Hashtag Page
+GET {{endpoint}}/hashtag?page=1&size=5
+Content-Type: application/json
+Accept: application/json
+
+>>! ./.log/get-hashtag-page.json

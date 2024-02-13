@@ -1,0 +1,116 @@
+version: '3.8'
+name: blog-infra
+services:
+  rocketchat-mongo:
+    container_name: ${ROCKETCHAT_MONGO_NAME}
+    image: bitnami/mongodb:4.4
+    restart: always
+    hostname: ${ROCKETCHAT_MONGO_HOSTNAME}
+    ports:
+      - "${ROCKETCHAT_MONGO_PORT}:27017"
+    volumes:
+      - ${ROCKETCHAT_MONGO_VOLUME}:/bitnami/mongo
+    environment:
+      MONGODB_REPLICA_SET_MODE: primary
+      MONGODB_REPLICA_SET_NAME: rs0
+      MONGODB_PORT_NUMBER: 27017
+      MONGODB_INITIAL_PRIMARY_HOST: ${ROCKETCHAT_MONGO_HOSTNAME}
+      MONGODB_INITIAL_PRIMARY_PORT_NUMBER: 27017
+      MONGODB_ADVERTISED_HOSTNAME: ${ROCKETCHAT_MONGO_HOSTNAME}
+      MONGODB_ENABLE_JOURNAL: 'true'
+      ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - bridge
+
+  rocketchat:
+    container_name: ${ROCKETCHAT_NAME}
+    image: registry.rocket.chat/rocketchat/rocket.chat:latest
+    restart: always
+    ports:
+      - "${ROCKETCHAT_PORT}:3000"
+    volumes:
+      - ${ROCKETCHAT_VOLUME}:/app/uploads
+    environment:
+      MONGO_URL: mongodb://${ROCKETCHAT_MONGO_HOSTNAME}:27017/rocketchat?replicaSet=rs0
+      MONGO_OPLOG_URL: mongodb://${ROCKETCHAT_MONGO_HOSTNAME}:27017/local?replicaSet=rs0
+      ROOT_URL: ${ROCKETCHAT_URL}
+      URL: ${ROCKETCHAT_URL}
+      CREATE_TOKENS_FOR_USERS: true
+      REG_TOKEN: ${REG_TOKEN:-}
+    depends_on:
+      - rocketchat-mongo
+    networks:
+      - bridge
+
+  envoy:
+    container_name: blog-envoy
+    image: envoyproxy/envoy:dev
+    restart: always
+    ports:
+      - "${ENVOY_ADMIN_PORT}:9901"
+      - "${ENVOY_RESOURCES_PORT}:10000"
+    volumes:
+      - ${ENVOY_CONFIG_VOLUME}:/etc/envoy/envoy.yaml
+    networks:
+      - bridge
+
+  zookeeper:
+    container_name: ${ZOOKEEPER_NAME}
+    image: bitnami/zookeeper:latest
+    restart: always
+    ports:
+      - "${ZOOKEEPER_PORT}:2181"
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: yes
+    extra_hosts:
+      - kafka-gateway:host-gateway
+    networks:
+      - bridge
+
+  kafka:
+    container_name: ${KAFKA_NAME}
+    image: bitnami/kafka:latest
+    restart: always
+    ports:
+      - "${KAFKA_INTERNAL_PORT}:${KAFKA_INTERNAL_PORT}"
+      - "${KAFKA_EXTERNAL_PORT}:${KAFKA_EXTERNAL_PORT}"
+    environment:
+      KAFKA_ENABLE_KRAFT: no
+      ALLOW_PLAINTEXT_LISTENER: yes
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: true
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: kafka-gateway:${ZOOKEEPER_PORT}
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:${KAFKA_INTERNAL_PORT},EXTERNAL://0.0.0.0:${KAFKA_EXTERNAL_PORT}
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://localhost:${KAFKA_INTERNAL_PORT},EXTERNAL://kafka-gateway:${KAFKA_EXTERNAL_PORT}
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    extra_hosts:
+      - kafka-gateway:host-gateway
+    depends_on:
+      - zookeeper
+    networks:
+      - bridge
+
+  kafka-ui:
+    container_name: ${KAFKA_UI_NAME}
+    image: provectuslabs/kafka-ui:latest
+    restart: always
+    ports:
+      - "${KAFKA_UI_PORT}:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: kafka
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-gateway:${KAFKA_EXTERNAL_PORT}
+      KAFKA_CLUSTERS_0_ZOOKEEPER: kafka-gateway:${ZOOKEEPER_PORT}
+    extra_hosts:
+      - kafka-gateway:host-gateway
+    depends_on:
+      - zookeeper
+      - kafka
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    name: blog-infra
+    driver: bridge

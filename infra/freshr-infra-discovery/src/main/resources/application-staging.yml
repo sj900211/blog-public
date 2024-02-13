@@ -1,0 +1,4 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: https://staging.discovery.freshr.run/eureka/

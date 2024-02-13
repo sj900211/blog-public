@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/configure/configure-elasticsearch" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/configure/configure-elasticsearch" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/configure/configure-extensions" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/configure/configure-extensions" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/configure/configure-jpa" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/configure/configure-jpa" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/configure/configure-openfeign" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/configure/configure-openfeign" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/configure/configure-redis" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/configure/configure-redis" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/extension/freshr-extension-auth" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/extension/freshr-extension-auth" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/extension/freshr-extension-common" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/extension/freshr-extension-common" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/extension/freshr-extension-entity" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/extension/freshr-extension-entity" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/extension/freshr-extension-grpc" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/extension/freshr-extension-grpc" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/extension/freshr-extension-kafka" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/extension/freshr-extension-kafka" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/extension/freshr-extension-rest-docs" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/extension/freshr-extension-rest-docs" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/extension/freshr-extension-rocket-chat" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/extension/freshr-extension-rocket-chat" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/extension/freshr-extension-security" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/extension/freshr-extension-security" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/infra/freshr-infra-discovery" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/infra/freshr-infra-discovery" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/infra/freshr-infra-gateway" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/infra/freshr-infra-gateway" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/library/core/library-core-enumeration-mapper" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/library/core/library-core-enumeration-mapper" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/library/core/library-core-exceptions" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/library/core/library-core-exceptions" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/library/core/library-core-unit" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/library/core/library-core-unit" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/library/core/library-core-utils" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/library/core/library-core-utils" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/library/docs/library-docs-rest-docs" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/library/docs/library-docs-rest-docs" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/library/docs/library-docs-search-docs" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/library/docs/library-docs-search-docs" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/library/util/library-util-minio" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/library/util/library-util-minio" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/service/freshr-service-account" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/service/freshr-service-account" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/service/freshr-service-auth" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/service/freshr-service-auth" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/service/freshr-service-predefined" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/service/freshr-service-predefined" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/service/freshr-test" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/service/freshr-test" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,7 @@
+
+###
+# @name Create User
+# @no-log
+GET {{endpoint}}/avatar/{{subject}}?format=png&size=200
+Content-Type: application/json
+Accept: application/json

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/blog.iml" filepath="$PROJECT_DIR$/blog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infra/blog-environment/blog-environment.iml" filepath="$PROJECT_DIR$/infra/blog-environment/blog-environment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/configure/configure.iml" filepath="$PROJECT_DIR$/configure/configure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/core/core.iml" filepath="$PROJECT_DIR$/library/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/docs/docs.iml" filepath="$PROJECT_DIR$/library/docs/docs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extension/extension.iml" filepath="$PROJECT_DIR$/extension/extension.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/freshr-extension-entity.main.iml" filepath="$PROJECT_DIR$/.idea/modules/freshr-extension-entity.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/freshr-service-account.main.iml" filepath="$PROJECT_DIR$/.idea/modules/freshr-service-account.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/freshr-service-account.test.iml" filepath="$PROJECT_DIR$/.idea/modules/freshr-service-account.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infra/infra.iml" filepath="$PROJECT_DIR$/infra/infra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/manager/manager.iml" filepath="$PROJECT_DIR$/client/manager/manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service.iml" filepath="$PROJECT_DIR$/service/service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/util/util.iml" filepath="$PROJECT_DIR$/library/util/util.iml" />
+    </modules>
+  </component>
+</project>

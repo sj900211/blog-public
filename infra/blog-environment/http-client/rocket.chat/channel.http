@@ -1,0 +1,100 @@
+
+###
+# @name Group Create
+# @no-log
+POST {{endpoint}}/api/v1/groups.create
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+{
+  "name": "hello-world",
+  "readOnly": true
+}
+
+###
+# @name Channel Create
+# @no-log
+POST {{endpoint}}/api/v1/channels.create
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+{
+  "name": "halo-world",
+  "readOnly": true
+}
+
+###
+# @name Group List
+# @no-log
+GET {{endpoint}}/api/v1/groups.list
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+###
+# @name Group List All
+# @no-log
+GET {{endpoint}}/api/v1/groups.listAll
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+###
+# @name Channel List
+# @no-log
+GET {{endpoint}}/api/v1/channels.list
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+###
+# @name Channel List Joined
+# @no-log
+GET {{endpoint}}/api/v1/channels.list.joined
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+###
+# @name Channel Info
+# @no-log
+GET {{endpoint}}/api/v1/channels.info?roomId=64f6b554f0482b9ca48ed87e
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+###
+# @name Channel Join
+# @no-log
+POST {{endpoint}}/api/v1/groups.invite
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+{
+  "roomId": "64f6b3bff0482b9ca48ed876",
+  "userId": "qg9NZFPPXhkmx5Cfp"
+}
+
+###
+# @name Channel Join
+# @no-log
+POST {{endpoint}}/api/v1/channels.join
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+{
+  "roomId": "64f6b608f0482b9ca48ed882"
+}

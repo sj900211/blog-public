@@ -1,0 +1,59 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:40700/eureka/
+
+spring:
+  jpa:
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:406${freshr.service.serial}/postgres
+    username: postgres
+    password: postgres
+
+  data:
+    redis:
+      host: localhost
+      port: 40400
+      password: redis-password
+
+  elasticsearch:
+    uris: http://localhost:40500
+    password: elasticsearch-password
+
+  kafka:
+    bootstrap-servers: localhost:40302
+
+grpc:
+  client:
+    envoy:
+      address: 'static://localhost:40201'
+
+logging:
+  level:
+    root: info
+    org.apache.http: debug
+    p6spy: info
+
+freshr:
+  minio:
+    host: http://localhost:10501
+    bucket: test
+    access: minio-username
+    secret: minio-password
+  rocket-chat:
+    host: http://localhost:40100
+    manager:
+      username: BWUV+M/k4HLP0IcWmlyEB+ZUHNgAlHnUBtLeStm7lzqnyiOT43Irl5voWGW4HBnpUFGp/hTc49VPW7JJC+hIHopoZSI=
+      password: GX5GnMjhunWangCaJwYvvbpg0Blr+dv1QD2iRvxYoCHw0gyPe/zdnaY0/e1ucQa5RuslhhP/ys7t0zjzJ0dimvzDxwc=

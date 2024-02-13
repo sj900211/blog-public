@@ -1,0 +1,149 @@
+version: '3.8'
+name: blog-rdb
+services:
+  postgres-account:
+    container_name: ${POSTGRES_ACCOUNT_NAME}
+    image: postgres:latest
+    restart: always
+    ports:
+      - "${POSTGRES_ACCOUNT_PORT}:5432"
+    volumes:
+      - ${POSTGRES_INIT}:/docker-entrypoint-initdb.d/
+      - ${POSTGRES_ACCOUNT_VOLUME}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: postgres -c log_destination=stderr -c log_statement=all -c max_connections=${POSTGRES_MAX_CONNECTIONS}
+    extra_hosts:
+      - postgres-gateway:host-gateway
+    networks:
+      - bridge
+
+  postgres-predefined:
+    container_name: ${POSTGRES_PREDEFINED_NAME}
+    image: postgres:latest
+    restart: always
+    ports:
+      - "${POSTGRES_PREDEFINED_PORT}:5432"
+    volumes:
+      - ${POSTGRES_INIT}:/docker-entrypoint-initdb.d/
+      - ${POSTGRES_PREDEFINED_VOLUME}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: postgres -c log_destination=stderr -c log_statement=all -c max_connections=${POSTGRES_MAX_CONNECTIONS}
+    extra_hosts:
+      - postgres-gateway:host-gateway
+    networks:
+      - bridge
+
+  postgres-blog:
+    container_name: ${POSTGRES_BLOG_NAME}
+    image: postgres:latest
+    restart: always
+    ports:
+      - "${POSTGRES_BLOG_PORT}:5432"
+    volumes:
+      - ${POSTGRES_INIT}:/docker-entrypoint-initdb.d/
+      - ${POSTGRES_BLOG_VOLUME}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: postgres -c log_destination=stderr -c log_statement=all -c max_connections=${POSTGRES_MAX_CONNECTIONS}
+    extra_hosts:
+      - postgres-gateway:host-gateway
+    networks:
+      - bridge
+
+  postgres-conversation:
+    container_name: ${POSTGRES_CONVERSATION_NAME}
+    image: postgres:latest
+    restart: always
+    ports:
+      - "${POSTGRES_CONVERSATION_PORT}:5432"
+    volumes:
+      - ${POSTGRES_INIT}:/docker-entrypoint-initdb.d/
+      - ${POSTGRES_CONVERSATION_VOLUME}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: postgres -c log_destination=stderr -c log_statement=all -c max_connections=${POSTGRES_MAX_CONNECTIONS}
+    extra_hosts:
+      - postgres-gateway:host-gateway
+    networks:
+      - bridge
+
+  postgres-customer:
+    container_name: ${POSTGRES_CUSTOMER_NAME}
+    image: postgres:latest
+    restart: always
+    ports:
+      - "${POSTGRES_CUSTOMER_PORT}:5432"
+    volumes:
+      - ${POSTGRES_INIT}:/docker-entrypoint-initdb.d/
+      - ${POSTGRES_CUSTOMER_VOLUME}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: postgres -c log_destination=stderr -c log_statement=all -c max_connections=${POSTGRES_MAX_CONNECTIONS}
+    extra_hosts:
+      - postgres-gateway:host-gateway
+    networks:
+      - bridge
+
+  postgres-toy:
+    container_name: ${POSTGRES_TOY_NAME}
+    image: postgres:latest
+    restart: always
+    ports:
+      - "${POSTGRES_TOY_PORT}:5432"
+    volumes:
+      - ${POSTGRES_INIT}:/docker-entrypoint-initdb.d/
+      - ${POSTGRES_TOY_VOLUME}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: postgres -c log_destination=stderr -c log_statement=all -c max_connections=${POSTGRES_MAX_CONNECTIONS}
+    extra_hosts:
+      - postgres-gateway:host-gateway
+    networks:
+      - bridge
+
+  postgres-task:
+    container_name: ${POSTGRES_TASK_NAME}
+    image: postgres:latest
+    restart: always
+    ports:
+      - "${POSTGRES_TASK_PORT}:5432"
+    volumes:
+      - ${POSTGRES_INIT}:/docker-entrypoint-initdb.d/
+      - ${POSTGRES_TASK_VOLUME}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: postgres -c log_destination=stderr -c log_statement=all -c max_connections=${POSTGRES_MAX_CONNECTIONS}
+    extra_hosts:
+      - postgres-gateway:host-gateway
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    name: blog-rdb
+    driver: bridge
+
+volumes:
+  postgres-account:
+    name: postgres-account
+  postgres-predefined:
+    name: postgres-predefined
+  postgres-blog:
+    name: postgres-blog
+  postgres-conversation:
+    name: postgres-conversation
+  postgres-customer:
+    name: postgres-customer
+  postgres-toy:
+    name: postgres-toy
+  postgres-task:
+    name: postgres-task

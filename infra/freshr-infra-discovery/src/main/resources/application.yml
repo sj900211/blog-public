@@ -1,0 +1,14 @@
+server:
+  port: 40700
+
+spring:
+  application:
+    name: discovery
+
+  profiles:
+    active: test
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

@@ -1,0 +1,159 @@
+
+###
+# @name Create User
+POST {{endpoint}}/api/v1/users.create
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+{
+  "email": "{{test-email}}",
+  "name": "{{test-name}}",
+  "username":  "{{test-username}}",
+  "password":  "{{test-password}}",
+  "joinDefaultChannels": {{test-join-default-channels}}
+}
+
+> {% client.global.set("USER_ID", response.body.user._id); %}
+>>! ./.log/create-user.json
+
+###
+# @name Set Avatar
+# @no-log
+POST {{endpoint}}/api/v1/users.setAvatar
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+{
+  "userId": "{{USER_ID}}",
+  "avatarUrl": "https://picsum.photos/200"
+}
+
+>>! ./.log/set-avatar.json
+
+###
+# @name Get Users List
+GET {{endpoint}}/api/v1/users.list
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+>>! ./.log/get-users-list.json
+
+###
+# @name Get User's Info
+GET {{endpoint}}/api/v1/users.info?userId={{USER_ID}}
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+>>! ./.log/get-users-info.json
+
+###
+# @name Get Avatar
+# @no-redirect
+GET {{endpoint}}/api/v1/users.getAvatar?userId={{USER_ID}}
+Content-Type: application/json
+Accept: application/json
+
+###
+# @name Update User
+POST {{endpoint}}/api/v1/users.update
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+{
+  "userId": "{{USER_ID}}",
+  "data": {
+    "name": "{{test-update-name}}",
+    "password":  "{{test-password}}"
+  }
+}
+
+>>! ./.log/update-user.json
+
+###
+# @name Login
+POST {{endpoint}}/api/v1/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username":  "{{test-username}}",
+  "password":  "{{test-password}}"
+}
+
+> {% client.global.set("AUTH_TOKEN", response.body.data.authToken); %}
+>>! ./.log/login.json
+
+###
+# @name Create Users Token
+POST {{endpoint}}/api/v1/users.createToken
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+{
+  "userId": "{{USER_ID}}"
+}
+
+> {% client.global.set("AUTH_TOKEN", response.body.data.authToken); %}
+>>! ./.log/create-users-token.json
+
+###
+# @name My Profile
+#GET {{endpoint}}/api/v1/me
+#Content-Type: application/json
+#Accept: application/json
+#X-Auth-Token: {{AUTH_TOKEN}}
+#X-User-Id: {{USER_ID}}
+#
+#>>! ./.log/my-profile.json
+
+###
+# @name Logout Other Clients
+POST {{endpoint}}/api/v1/users.logoutOtherClients
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{AUTH_TOKEN}}
+X-User-Id: {{USER_ID}}
+
+>>! ./.log/logout-other-client.json
+
+###
+# @name Update own basic information
+#POST {{endpoint}}/api/v1/users.updateOwnBasicInfo
+#Content-Type: application/json
+#Accept: application/json
+#X-Auth-Token: {{AUTH_TOKEN}}
+#X-User-Id: {{USER_ID}}
+#
+#{
+#  "data": {
+#    "name": "{{test-update-name}}"
+#  }
+#}
+#
+#>>! ./.log/update-own-basic-information.json
+
+###
+# @name Delete User
+POST {{endpoint}}/api/v1/users.delete
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: {{token}}
+X-User-Id: {{userId}}
+
+{
+  "userId": "{{USER_ID}}"
+}
+
+>>! ./.log/delete-user.json

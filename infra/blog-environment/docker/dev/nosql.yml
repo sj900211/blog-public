@@ -1,0 +1,37 @@
+version: '3.8'
+name: blog-nosql
+services:
+  redis:
+    container_name: ${REDIS_NAME}
+    image: redis:latest
+    restart: always
+    ports:
+      - "${REDIS_PORT}:6379"
+    command: redis-server --bind ${REDIS_BIND} --maxmemory ${REDIS_MAXMEMORY} --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - ${REDIS_VOLUME}:/data
+    networks:
+      - bridge
+
+  elasticsearch:
+    container_name: ${ELASTICSEARCH_NAME}
+    image: elasticsearch:8.7.0
+    restart: always
+    ports:
+      - "${ELASTICSEARCH_HTTP_PORT}:9200"
+      - "${ELASTICSEARCH_TCP_PORT}:9300"
+    volumes:
+      - ${ELASTICSEARCH_CONFIG_VOLUME}:/usr/share/elasticsearch/config/elasticsearch.yml:ro,Z
+      - ${ELASTICSEARCH_VOLUME}:/usr/share/elasticsearch/data
+    environment:
+      node.name: elasticsearch
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      ELASTIC_PASSWORD: ${ELASTICSEARCH_PASSWORD}
+      discovery.type: single-node
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    name: blog-nosql
+    driver: bridge
